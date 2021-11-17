@@ -11,12 +11,6 @@ This App built on top of React Native expo
 - [What's here ?](#what's-here)
 - [Prerequisites](#prerequisites)
 - [Getting Started](#getting-started)
-- [Contributing](#contributing)
-- [Testing](#testing)
-- [Linking Native Libraries](#linking-native-libraries)
-- [Manual Installation](#manual-installation)
-- [Project Structure](#project-structure)
-- [Troubleshooting](#troubleshooting)
 - [TODO](#todo)
 
 ---
