@@ -1,1 +1,1 @@
-export { default } from "./ButtonView";
+export { default } from './ButtonView'

@@ -1,1 +1,1 @@
-export { default } from "./ScreenAddProductView";
+export { default } from './ScreenAddProductContainer'

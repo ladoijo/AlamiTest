@@ -1,7 +1,8 @@
 import type { AppState } from '~/redux/store/configureStore'
 
-export const selectData = ({ seller }: AppState) => ({
-  isLoading: seller.create.isLoading,
+export const selectData = ({ product }: AppState) => ({
+  isLoading: product.list.isLoading,
+  products: product.list.items,
 })
 
 export type PropsFromSelector = ReturnType<typeof selectData>

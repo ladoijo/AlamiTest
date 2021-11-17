@@ -1,1 +1,1 @@
-export { default } from "./ScreenListProductView";
+export { default } from './ScreenListProductContainer'

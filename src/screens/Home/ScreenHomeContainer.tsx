@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 import type { ParamListBase } from '@react-navigation/routers'
 import type { StackScreenProps } from '@react-navigation/stack'
 

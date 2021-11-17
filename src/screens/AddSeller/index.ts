@@ -1,1 +1,1 @@
-export { default } from "./ScreenAddSellerContainer";
+export { default } from './ScreenAddSellerContainer'

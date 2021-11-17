@@ -1,1 +1,1 @@
-export { default } from "./ScreenHomeContainer";
+export { default } from './ScreenHomeContainer'

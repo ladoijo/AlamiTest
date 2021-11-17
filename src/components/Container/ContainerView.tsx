@@ -1,5 +1,8 @@
-import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import React from 'react'
+import { ActivityIndicator, View, StyleSheet } from 'react-native'
+import type { ViewProps as RNViewProps } from 'react-native'
+
+import colors from '~/theme/colors'
 
 const styles = StyleSheet.create({
   container: {
@@ -8,15 +11,31 @@ const styles = StyleSheet.create({
     paddingHorizontal: 12,
     width: '100%',
   },
-});
+  loadingWrapper: {
+    alignItems: 'center',
+    bottom: 0,
+    justifyContent: 'center',
+    left: 0,
+    position: 'absolute',
+    right: 0,
+    top: 0,
+  },
+})
 
-interface ViewProps {
+interface ViewProps extends RNViewProps {
   children: React.ReactNode
+  isLoading?: boolean
 }
 
-const ContainerView = ({ children }: ViewProps) => (
-  <View style={styles.container}>
-    {children}
+const ContainerView = ({ children, isLoading, style }: ViewProps) => (
+  <View style={[styles.container, style]}>
+    {isLoading ? (
+      <View style={styles.loadingWrapper}>
+        <ActivityIndicator size="large" color={colors.secondary} />
+      </View>
+    ) : (
+      children
+    )}
   </View>
 )
 

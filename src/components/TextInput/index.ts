@@ -1,1 +1,1 @@
-export { default } from "./TextInputView";
+export { default } from './TextInputView'

@@ -7,7 +7,11 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "eject": "expo eject"
+    "eject": "expo eject",
+    "lint": "eslint --ext .tsx --ext .ts ./src",
+    "lint:fix": "eslint --fix ./src",
+    "format": "prettier --check ./src",
+    "format:fix": "prettier --write ./src"
   },
   "dependencies": {
     "@react-navigation/native": "^6.0.6",
@@ -18,26 +22,40 @@
     "react": "17.0.1",
     "react-dom": "17.0.1",
     "react-native": "0.64.3",
-    "react-native-config": "^1.4.5",
     "react-native-gesture-handler": "^1.10.3",
     "react-native-safe-area-context": "^3.3.2",
     "react-native-screens": "~3.8.0",
+    "react-native-table-component": "^1.2.1",
     "react-native-web": "0.17.1",
     "react-redux": "^7.2.6",
     "redux": "^4.1.2",
-    "redux-logger": "^3.0.6",
     "redux-observable": "^2.0.0",
-    "redux-thunk": "^2.4.0",
     "rxjs": "^7.4.0",
-    "url-pattern": "^1.0.3"
+    "url-pattern": "^1.0.3",
+    "test": "jest"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
+    "@types/jest": "^27.0.2",
     "@types/react": "~17.0.21",
     "@types/react-native": "~0.64.12",
+    "@types/react-native-table-component": "^1.2.2",
     "@types/redux-logger": "^3.0.9",
+    "@typescript-eslint/eslint-plugin": "^5.4.0",
+    "@typescript-eslint/parser": "^5.4.0",
+    "eslint": "^8.2.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.25.3",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-react": "^7.27.0",
+    "eslint-plugin-react-hooks": "^4.3.0",
+    "jest-expo": "^43.0.1",
     "metro-react-native-babel-preset": "^0.66.2",
+    "prettier": "^2.4.1",
     "typescript": "~4.3.5"
+  },
+  "jest": {
+    "preset": "jest-expo"
   },
   "private": true
 }

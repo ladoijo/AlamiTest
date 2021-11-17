@@ -1,1 +1,1 @@
-export { default } from "./ScreenSearchProductView";
+export { default } from './ScreenSearchProductContainer'
