@@ -1,13 +1,12 @@
 import { Epic, ofType } from 'redux-observable'
 import { of } from 'rxjs'
 import { catchError, map, mergeMap } from 'rxjs/operators'
-import { ToastAndroid } from 'react-native'
 
 import { ADD_SELLER_POST } from '~/constants/endpoints'
 
 import { SELLER_CREATE, sellerCreateFinish } from '~/redux/ducks/seller'
 
-export const sellerCreateEpic: Epic = (action$, state$, { api }) =>
+export const sellerCreateEpic: Epic = (action$, state$, { api, alert }) =>
   action$.pipe(
     ofType(SELLER_CREATE),
     mergeMap(({ payload }) =>
@@ -17,14 +16,14 @@ export const sellerCreateEpic: Epic = (action$, state$, { api }) =>
       }).pipe(
         map(({ response }) => {
           if (response.code === 200) {
-            ToastAndroid.show('Berhasil Menambah Penjual', ToastAndroid.SHORT)
+            alert.show({ type: 'success', message: 'Berhasil Menambah Penjual' })
           } else {
-            ToastAndroid.show(response.message, ToastAndroid.SHORT)
+            alert.show({ type: 'error', message: response.message })
           }
           return sellerCreateFinish()
         }),
         catchError((error) => {
-          ToastAndroid.show(error.message, ToastAndroid.SHORT)
+          alert.show({ type: 'error', message: error.message })
           return of(sellerCreateFinish())
         }),
       ),

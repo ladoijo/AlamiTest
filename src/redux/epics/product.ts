@@ -1,7 +1,6 @@
 import { Epic, ofType } from 'redux-observable'
 import { of } from 'rxjs'
 import { catchError, map, mergeMap } from 'rxjs/operators'
-import { ToastAndroid } from 'react-native'
 
 import { ADD_PRODUCT_POST, LIST_PRODUCT_GET, SEARCH_PRODUCT_GET } from '~/constants/endpoints'
 
@@ -13,7 +12,7 @@ import {
   productListFetchSuccess,
 } from '~/redux/ducks/product'
 
-export const productCreateEpic: Epic = (action$, state$, { api }) =>
+export const productCreateEpic: Epic = (action$, state$, { api, alert }) =>
   action$.pipe(
     ofType(PRODUCT_CREATE),
     mergeMap(({ payload }) => {
@@ -23,14 +22,14 @@ export const productCreateEpic: Epic = (action$, state$, { api }) =>
       }).pipe(
         map(({ response }) => {
           if (response.code === 200) {
-            ToastAndroid.show('Berhasil Menambah Produk', ToastAndroid.SHORT)
+            alert.show({ type: 'success', message: 'Berhasil Menambah Produk' })
           } else {
-            ToastAndroid.show(response.message, ToastAndroid.SHORT)
+            alert.show({ type: 'error', message: response.message })
           }
           return productCreateFinish()
         }),
         catchError((error) => {
-          ToastAndroid.show(error.message, ToastAndroid.SHORT)
+          alert.show({ type: 'error', message: error.message })
           return of(productCreateFinish())
         }),
       )
@@ -42,7 +41,7 @@ interface ProductListFetchQuery {
   keyword?: string
 }
 
-export const productListFetchEpic: Epic = (action$, state$, { api }) =>
+export const productListFetchEpic: Epic = (action$, state$, { api, alert }) =>
   action$.pipe(
     ofType(PRODUCT_LIST_FETCH),
     mergeMap(({ payload }) => {
@@ -61,12 +60,12 @@ export const productListFetchEpic: Epic = (action$, state$, { api }) =>
       }).pipe(
         map(({ response }) => {
           if (response.code !== 200) {
-            ToastAndroid.show(response.message, ToastAndroid.SHORT)
+            alert.show({ type: 'error', message: response.message })
           }
           return productListFetchSuccess(response.data)
         }),
         catchError((error) => {
-          ToastAndroid.show(error.message, ToastAndroid.SHORT)
+          alert.show({ type: 'error', message: error.message })
           return of(productListFetchFailed())
         }),
       )

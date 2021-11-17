@@ -1,82 +1,68 @@
-import reducer, * as channelDuck from '~/redux/ducks/seller'
+import reducer, * as sellerDuck from '~/redux/ducks/seller'
 import type {} from '~/redux/ducks/seller'
 
+const createPayload = { nama: 'Toko Agus', kota: 'Depok' }
+
 describe('Action', () => {
-  it('creates action to fetch channel payment', () => {
+  it('creates action to create seller', () => {
     const expectAction = {
-      type: channelDuck.CHANNEL_PAYMENT_FETCH,
+      type: sellerDuck.SELLER_CREATE,
+      payload: createPayload,
     }
-    expect(channelDuck.channelPaymentFetch()).toEqual(expectAction)
+    expect(sellerDuck.sellerCreate(createPayload)).toEqual(expectAction)
   })
-  it('creates action to fetch channel payment failed', () => {
+  it('creates action when create seller failed', () => {
     const expectAction = {
-      type: channelDuck.CHANNEL_PAYMENT_FETCH_FAILED,
+      type: sellerDuck.SELLER_CREATE_FINISH,
     }
-    expect(channelDuck.channelPaymentFetchFailed()).toEqual(expectAction)
+    expect(sellerDuck.sellerCreateFinish()).toEqual(expectAction)
   })
-  it('creates action to fetch channel payment success', () => {
+  it('creates action when create seller success', () => {
     const expectAction = {
-      type: channelDuck.CHANNEL_PAYMENT_FETCH_SUCCESS,
-      payload: ResponseChannelPayment.data.items,
+      type: sellerDuck.SELLER_CREATE_FINISH,
     }
-    expect(channelDuck.channelPaymentFetchSuccess(ResponseChannelPayment.data.items)).toEqual(
-      expectAction,
-    )
-  })
-  it('creates action to reset channel payment', () => {
-    const expectAction = {
-      type: channelDuck.CHANNEL_PAYMENT_RESET,
-    }
-    expect(channelDuck.channelPaymentReset()).toEqual(expectAction)
+    expect(sellerDuck.sellerCreateFinish()).toEqual(expectAction)
   })
 })
 
 describe('Reducer:', () => {
-  it('handles action fetch channel payment', () => {
+  it('handles action to create seller', () => {
     const action = {
-      type: channelDuck.CHANNEL_PAYMENT_FETCH,
+      type: sellerDuck.SELLER_CREATE,
+      payload: createPayload,
     }
     const expectedState = {
-      ...channelDuck.INITIAL_STATE,
-      list: {
-        ...channelDuck.INITIAL_STATE.list,
+      ...sellerDuck.INITIAL_STATE,
+      create: {
+        ...sellerDuck.INITIAL_STATE.create,
         isLoading: true,
       },
     }
-    expect(reducer(channelDuck.INITIAL_STATE, action)).toEqual(expectedState)
+    expect(reducer(sellerDuck.INITIAL_STATE, action)).toEqual(expectedState)
   })
-  it('handles action fetch channel payment failed', () => {
+  it('handles action when create seller failed', () => {
     const action = {
-      type: channelDuck.CHANNEL_PAYMENT_FETCH_FAILED,
+      type: sellerDuck.SELLER_CREATE_FINISH,
     }
     const expectedState = {
-      ...channelDuck.INITIAL_STATE,
-      list: {
-        ...channelDuck.INITIAL_STATE.list,
+      ...sellerDuck.INITIAL_STATE,
+      create: {
+        ...sellerDuck.INITIAL_STATE.create,
         isLoading: false,
       },
     }
-    expect(reducer(channelDuck.INITIAL_STATE, action)).toEqual(expectedState)
+    expect(reducer(sellerDuck.INITIAL_STATE, action)).toEqual(expectedState)
   })
-  it('handles action fetch channel payment success', () => {
+  it('handles action when create seller success', () => {
     const action = {
-      type: channelDuck.CHANNEL_PAYMENT_FETCH_SUCCESS,
-      payload: ResponseChannelPayment.data.items,
+      type: sellerDuck.SELLER_CREATE_FINISH,
     }
     const expectedState = {
-      ...channelDuck.INITIAL_STATE,
-      list: {
-        data: ResponseChannelPayment.data.items,
+      ...sellerDuck.INITIAL_STATE,
+      create: {
         isLoading: false,
       },
     }
-    expect(reducer(channelDuck.INITIAL_STATE, action)).toEqual(expectedState)
-  })
-  it('handles action to reset channel payment', () => {
-    const action = {
-      type: channelDuck.CHANNEL_PAYMENT_RESET,
-    }
-    const expectedState = channelDuck.INITIAL_STATE
-    expect(reducer(channelDuck.INITIAL_STATE, action)).toEqual(expectedState)
+    expect(reducer(sellerDuck.INITIAL_STATE, action)).toEqual(expectedState)
   })
 })
