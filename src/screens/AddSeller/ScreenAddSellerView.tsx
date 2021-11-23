@@ -21,10 +21,12 @@ const styles = StyleSheet.create({
 export interface SellerProps {
   nama: string
   kota: string
+  jenis: string
+  tahunBerdiri: number
 }
 
 interface ViewProps extends PropsFromSelector {
-  handleChange: (key: string, value: string) => void
+  handleChange: (key: string, value: string | number) => void
   handleSave: () => void
   isSaveButtonDisabled: boolean
   seller: SellerProps
@@ -49,6 +51,19 @@ const ScreenAddSellerView = ({
         onChangeText={(value) => handleChange('kota', value)}
         value={seller.kota}
         placeholder="Kota"
+        style={styles.textInput}
+      />
+      <TextInput
+        onChangeText={(value) => handleChange('jenis', value)}
+        value={seller.jenis}
+        placeholder="Jenis"
+        style={styles.textInput}
+      />
+      <TextInput
+        keyboardType="numeric"
+        onChangeText={(value) => handleChange('tahunBerdiri', +value)}
+        value={`${seller.tahunBerdiri ? seller.tahunBerdiri : ''}`}
+        placeholder="Tahun Berdiri"
         style={styles.textInput}
       />
       <Button style={styles.button} onPress={handleSave} disabled={isSaveButtonDisabled}>

@@ -10,6 +10,8 @@ import type { SellerProps } from './ScreenAddSellerView'
 const DEFAULT_SELLER_VALUE = {
   nama: '',
   kota: '',
+  jenis: '',
+  tahunBerdiri: 0,
 }
 
 const ScreenAddSellerContainer = () => {
@@ -18,7 +20,7 @@ const ScreenAddSellerContainer = () => {
   const [seller, setSeller] = useState<SellerProps>(DEFAULT_SELLER_VALUE)
   const isSaveButtonDisabled = !seller.nama || !seller.kota
 
-  const handleChange = (key: string, value: string) => {
+  const handleChange = (key: string, value: string | number) => {
     setSeller({
       ...seller,
       [key]: value,

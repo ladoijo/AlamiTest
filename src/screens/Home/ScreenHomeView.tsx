@@ -52,6 +52,14 @@ const ScreenHomeView = ({ handleNavigateTo }: ViewProps) => {
           <Text style={styles.buttonText}>Cari Produk</Text>
         </Button>
       </View>
+      <View style={styles.menuContainer}>
+        <Button style={styles.button} onPress={() => handleNavigateTo('ListSeller')}>
+          <Text style={styles.buttonText}>Daftar Penjual</Text>
+        </Button>
+        <Button style={styles.button} onPress={() => handleNavigateTo('DetailSeller')}>
+          <Text style={styles.buttonText}>Detail Penjual</Text>
+        </Button>
+      </View>
     </Container>
   )
 }
